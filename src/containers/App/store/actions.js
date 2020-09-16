@@ -7,6 +7,7 @@ import {
   CHOICE_TV_SHOW,
 } from "./actionsType";
 import axiosOrder from "../../../axiosOrder";
+import { recomposeColor } from "@material-ui/core";
 const fetchSuccess = () => {
   return {
     type: FETCH_SUCCESS,
@@ -39,18 +40,16 @@ const actions = {
       currentTVShowId: id,
     };
   },
-  fetch(searchQuery) {
-    return async (dispacth) => {
-      console.log(1)
-      dispacth(fetchRequest());
-      try {
-        const response = await axiosOrder("?q=" + searchQuery);
-        // dispacth(fetchTVInit(response.data));
-        dispacth(fetchSuccess());
-      } catch (error) {
-        dispacth(fetchError(error));
-      }
-    };
+  async fetch(searchQuery, dispatch) {
+    const response = await axiosOrder("?q=" + searchQuery);
+    dispatch(fetchTVInit(response.data));
+    dispatch(fetchRequest());
+    try {
+      fetchTVInit(response.data);
+      dispatch(fetchSuccess());
+    } catch (error) {
+      dispatch(fetchError(error));
+    }
   },
 };
 

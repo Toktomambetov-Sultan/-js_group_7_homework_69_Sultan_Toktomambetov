@@ -35,8 +35,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Layuot = ({ children, onChangeInput, TVShows, value }) => {
+const Layuot = ({ children, onChangeInput, TVShows, value, choiceTVShow }) => {
   const classes = useStyles();
+  let TVShowsList = <h2>Nothin</h2>;
+  if (TVShows.length) {
+    TVShowsList = (
+      <List className={classes.getTVShowsList}>
+        {TVShows.map((elem) => (
+          <ListItem
+            key={elem.show.id}
+            component="li"
+            button
+            onClick={() => choiceTVShow(elem.show.id)}
+          >
+            <b>{elem.show.name}</b>
+          </ListItem>
+        ))}
+      </List>
+    );
+  }
   return (
     <div>
       <AppBar position="static">
@@ -55,11 +72,7 @@ const Layuot = ({ children, onChangeInput, TVShows, value }) => {
               value={value}
               className={classes.getTVShowsInput}
             />
-            {/* <List className={classes.getTVShowsList}>
-              <ListItem component="li" button>
-              <b></b>
-            </ListItem>
-            </List> */}
+            {TVShowsList}
           </div>
           <div>{children}</div>
         </Container>

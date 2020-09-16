@@ -10,12 +10,19 @@ function App() {
   const changeInputValue = (event) => {
     const value = event.target.value;
     dispatch(actions.changeInputValue(value));
-    dispatch(actions.fetch(value));
-    console.log(state);
+    actions.fetch(value, dispatch);
+    dispatch((e) => console.log(e));
   };
-
+  const choiceTVShow = (id) => {
+    dispatch(actions.choiceTVShow(id));
+  };
   return (
-    <Layuot value={state.inputValue} onChangeInput={changeInputValue}>
+    <Layuot
+      TVShows={state.TVShows}
+      value={state.inputValue}
+      onChangeInput={changeInputValue}
+      choiceTVShow={choiceTVShow}
+    >
       {state.currentTVShowId ? state.currentTVShowId : null}
     </Layuot>
   );
