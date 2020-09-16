@@ -1,0 +1,6 @@
+export const CHANGE_INPUT_VALUE = "CHANGE_INPUT_VALUE";
+export const FETCH_REQUEST = "FETCH_REQUEST";
+export const FETCH_ERROR = "FETCH_ERROR";
+export const FETCH_SUCCESS = "FETCH_SUCCESS";
+export const FETCH_INIT = "FETCH_INIT";
+export const CHOICE_TV_SHOW = "CHOICE_TV_SHOW";
