@@ -5,9 +5,9 @@ import {
   FETCH_REQUEST,
   FETCH_INIT,
   CHOICE_TV_SHOW,
-} from "./actionsType";
+  CLEAR_TV_LIST,
+} from "./actionsTypes";
 import axiosOrder from "../../../axiosOrder";
-import { recomposeColor } from "@material-ui/core";
 const fetchSuccess = () => {
   return {
     type: FETCH_SUCCESS,
@@ -34,11 +34,16 @@ const actions = {
   changeInputValue(value) {
     return { type: CHANGE_INPUT_VALUE, inputValue: value };
   },
-  choiceTVShow(id) {
+  choiceTVShow(TVShow) {
     return {
       type: CHOICE_TV_SHOW,
-      currentTVShowId: id,
+      currentTVShow: TVShow,
     };
+  },
+  clearTVList(){
+    return {
+      type: CLEAR_TV_LIST,
+    }
   },
   async fetch(searchQuery, dispatch) {
     const response = await axiosOrder("?q=" + searchQuery);

@@ -4,3 +4,4 @@ export const FETCH_ERROR = "FETCH_ERROR";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_INIT = "FETCH_INIT";
 export const CHOICE_TV_SHOW = "CHOICE_TV_SHOW";
+export const CLEAR_TV_LIST = "CLEAR_TV_LIST";

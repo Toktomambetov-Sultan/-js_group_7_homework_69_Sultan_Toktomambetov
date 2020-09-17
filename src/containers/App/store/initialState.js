@@ -1,7 +1,7 @@
 const initialState = {
   inputValue: "",
   TVShows: [],
-  currentTVShowId: null,
+  currentTVShow: null,
   errors: null,
   loading: false,
 };

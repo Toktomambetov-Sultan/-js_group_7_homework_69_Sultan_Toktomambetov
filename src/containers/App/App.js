@@ -4,6 +4,7 @@ import Layuot from "../../components/Layuot/Layuot";
 import reducer from "./store/reducer";
 import initialState from "./store/initialState";
 import actions from "./store/actions";
+import InfoForOne from "../../components/InfoForOne/InfoForOne";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -14,8 +15,13 @@ function App() {
     dispatch((e) => console.log(e));
   };
   const choiceTVShow = (id) => {
-    dispatch(actions.choiceTVShow(id));
+    const TVShow = state.TVShows.find((elem) => elem.show.id === id);
+    console.log(TVShow);
+    dispatch(actions.choiceTVShow(JSON.stringify(TVShow)));
+    dispatch(actions.changeInputValue(TVShow.show.name));
+    dispatch(actions.clearTVList());
   };
+  const currentTVShow = JSON.parse(state.currentTVShow);
   return (
     <Layuot
       TVShows={state.TVShows}
@@ -23,7 +29,7 @@ function App() {
       onChangeInput={changeInputValue}
       choiceTVShow={choiceTVShow}
     >
-      {state.currentTVShowId ? state.currentTVShowId : null}
+      {currentTVShow ? <InfoForOne TVShow={currentTVShow}></InfoForOne> : null}
     </Layuot>
   );
 }

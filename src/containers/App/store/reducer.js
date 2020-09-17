@@ -5,7 +5,8 @@ import {
   FETCH_REQUEST,
   FETCH_INIT,
   CHOICE_TV_SHOW,
-} from "./actionsType";
+  CLEAR_TV_LIST,
+} from "./actionsTypes";
 const reducer = (state, action) => {
   switch (action.type) {
     case CHANGE_INPUT_VALUE:
@@ -27,7 +28,12 @@ const reducer = (state, action) => {
     case CHOICE_TV_SHOW:
       return {
         ...state,
-        currentTVShowId: action.currentTVShowId,
+        currentTVShow: action.currentTVShow,
+      };
+    case CLEAR_TV_LIST:
+      return {
+        ...state,
+        TVShows: [],
       };
     default:
       return state;
